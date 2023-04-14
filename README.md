@@ -4,8 +4,9 @@
 
 ### 1.定义IDL接口和消息体
 
-- 客户端和服务端通过接口描述语言（IDL）就知道要怎么调用接口，供客户端和服务端使用。客户端调用hello方法，服务端实现hello具体。
-- 客户端hello是没有具体实现的接口，所以要用反射的动态代理特性实例化一个接口，将调用接口方法“代理”给InvocationHandler中的invoke来执行。
+客户端和服务端通过接口描述语言（IDL）就知道要怎么调用接口，供客户端和服务端使用。客户端调用hello方法，服务端实现hello具体。
+
+客户端hello是没有具体实现的接口，所以要用反射的动态代理特性实例化一个接口，将调用接口方法“代理”给InvocationHandler中的invoke来执行。
 
 ```Java
 public interface HelloService {
@@ -89,7 +90,7 @@ public class RpcResponseBody implements Serializable {
 
 ### 4.1编写客户端（动态代理）
 
-- 使用Java反射的动态代理特性，调用一个没有具体实现的接口，实例化该接口，将调用方法代理给`InvocationHandler`中的`invoke`来执行，在`invoke`中获取到接口名、方法名、参数、参数类型，包装成RPC协议，发送给服务端，然后同步等待服务端返回。
+使用Java反射的动态代理特性，调用一个没有具体实现的接口，实例化该接口，将调用方法代理给`InvocationHandler`中的`invoke`来执行，在`invoke`中获取到接口名、方法名、参数、参数类型，包装成RPC协议，发送给服务端，然后同步等待服务端返回。
 
 ```Java
 // 客户端使用
@@ -152,7 +153,7 @@ public class RpcClientProxy implements InvocationHandler {
 
 ### 4.2编写客户端（网络传输）
 
-- 使用socket进行网络传输（这里没有服务发现，是写死的），可以换成其他网络传输。
+使用socket进行网络传输（这里没有服务发现，是写死的），可以换成其他网络传输。
 
 ```Java
 public class RpcClientTransfer {
@@ -305,9 +306,9 @@ public class HelloServiceImpl implements HelloService {
 
 #### 6.2服务端测试类
 
-- 启动rpc服务器
-- 将服务注册
-- 开启服务端口
+1. 启动rpc服务器
+2. 将服务注册
+3. 开启服务端口
 
 ```Java
 public class TestServer {
