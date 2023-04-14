@@ -306,9 +306,9 @@ public class HelloServiceImpl implements HelloService {
 
 #### 6.2服务端测试类
 
-1. 启动rpc服务器
-2. 将服务注册
-3. 开启服务端口
+启动rpc服务器
+将服务注册
+开启服务端口
 
 ```Java
 public class TestServer {
